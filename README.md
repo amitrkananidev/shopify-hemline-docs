@@ -1,6 +1,6 @@
-# Hemline theme — documentation
+# Selvedge theme — documentation
 
-Setup guide and support for the Hemline Shopify theme.
+Setup guide and support for the Selvedge Shopify theme.
 
 Live site: https://hemline.trinityinfo.in/
 
