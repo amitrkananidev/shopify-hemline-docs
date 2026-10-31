@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hemline — Theme documentation</title>
+<meta name="description" content="Setup guide, section reference, FAQ and support for the Hemline Shopify theme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F6F2EC;--surface:#fff;--ink:#15130F;--muted:#6B655C;--line:#E3DCD1;--tint:#E8E1D6;--accent:#B8552F;--accent2:#1F3A34;--r:14px}
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0F0F10;--surface:#1C1C1F;--ink:#F4F1EA;--muted:#A39E95;--line:#2C2C30;--tint:#26262A;--accent:#D4A857;--accent2:#2A3A4A}}
+  :root[data-theme=dark]{--bg:#0F0F10;--surface:#1C1C1F;--ink:#F4F1EA;--muted:#A39E95;--line:#2C2C30;--tint:#26262A;--accent:#D4A857;--accent2:#2A3A4A}
+  *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px}
+  a{color:inherit}h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:0}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 16px}@media(min-width:900px){.wrap{padding:0 40px}}
+  header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .logo{font-family:Fraunces,serif;font-size:22px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;text-decoration:none}
+  nav.top{display:flex;gap:20px;font-size:13px;font-weight:600;flex-wrap:wrap}nav.top a{text-decoration:none;color:var(--muted)}nav.top a:hover{color:var(--ink)}
+  .hero{padding:72px 0 48px;border-bottom:1px solid var(--line)}.hero h1{font-size:clamp(40px,6vw,72px)}.hero p{color:var(--muted);max-width:620px;font-size:17px;margin:16px 0 0}
+  .layout{display:grid;gap:40px;padding:48px 0}@media(min-width:900px){.layout{grid-template-columns:220px 1fr}}
+  aside{position:sticky;top:80px;align-self:start;display:none}@media(min-width:900px){aside{display:block}}
+  aside a{display:block;padding:8px 0 8px 14px;border-left:2px solid var(--line);font-size:14px;color:var(--muted);text-decoration:none}aside a:hover{border-color:var(--accent);color:var(--ink)}
+  main>section{padding:0 0 56px;margin-bottom:56px;border-bottom:1px solid var(--line)}main>section:last-child{border:0}
+  main h2{font-size:36px;margin-bottom:20px}main h3{font-size:22px;margin:32px 0 10px}
+  p{margin:0 0 14px;color:var(--muted)}p strong,li strong{color:var(--ink)}ul,ol{color:var(--muted);padding-left:22px}li{margin-bottom:6px}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:var(--tint);padding:2px 6px;border-radius:6px;color:var(--ink)}
+  pre{background:var(--tint);padding:16px;border-radius:var(--r);overflow:auto;font-size:13px}pre code{background:none;padding:0}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 20px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .grid3{display:grid;gap:16px}@media(min-width:700px){.grid3{grid-template-columns:repeat(3,1fr)}}
+  .step{display:flex;gap:16px;margin-bottom:18px}.step b{flex:none;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:13px}
+  details{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin-bottom:10px}summary{cursor:pointer;padding:16px 20px;font-weight:600;list-style:none;display:flex;justify-content:space-between}summary::-webkit-details-marker{display:none}summary::after{content:'+';color:var(--muted)}details[open] summary::after{content:'–'}details div{padding:0 20px 18px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;background:var(--accent);color:#fff;border-radius:999px;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}.field label{font-size:13px;font-weight:600}.field input,.field textarea,.field select{height:46px;border:1.5px solid var(--line);background:var(--bg);color:inherit;border-radius:999px;padding:0 16px;font:inherit;font-size:14px}.field textarea{height:auto;min-height:120px;border-radius:var(--r);padding:12px 16px}
+  .swatch{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin-right:6px;border:1px solid var(--line)}
+  footer{padding:40px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .kbd{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#top">Hemline</a><nav class="top"><a href="#setup">Setup</a><a href="#settings">Settings</a><a href="#sections">Sections</a><a href="#product">Product page</a><a href="#faq">FAQ</a><a href="#support">Support</a><a href="#changelog">Changelog</a></nav></div></header>
+
+<div class="hero" id="top"><div class="wrap"><span class="kbd">Theme documentation · v0.2</span><h1 style="margin-top:12px">Everything you need to set up Hemline.</h1><p>Hemline is a premium fashion theme for Shopify Online Store 2.0: five colour schemes, a mega menu, bundles, lookbook hotspots, subscriptions, pickup and more — all from the theme editor, no code.</p><div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap"><a class="btn" href="#setup">Start setup</a><a class="btn ghost" href="#support">Contact support</a></div></div></div>
+
+<div class="wrap layout">
+<aside><a href="#setup">1. Setup in 10 minutes</a><a href="#settings">2. Theme settings</a><a href="#colours">3. Colour schemes</a><a href="#menus">4. Menus & mega menu</a><a href="#sections">5. Homepage sections</a><a href="#product">6. Product page</a><a href="#collection">7. Collections & filters</a><a href="#cart">8. Cart</a><a href="#promo">9. Promo tools</a><a href="#apps">10. Recommended apps</a><a href="#faq">FAQ</a><a href="#support">Support</a><a href="#changelog">Changelog</a></aside>
+
+<main>
+<section id="setup"><h2>1. Setup in 10 minutes</h2>
+  <div class="step"><b>1</b><div><strong>Install.</strong> Online Store → Themes → Add theme → Upload zip (or install from the Theme Store). Click <em>Publish</em> when you're ready; until then use <em>Customize</em> to preview.</div></div>
+  <div class="step"><b>2</b><div><strong>Menus.</strong> Content → Menus. Create <code>Main menu</code> (header) and <code>Footer menu</code>. Nest items under a parent to get a mega menu (see §4).</div></div>
+  <div class="step"><b>3</b><div><strong>Pages.</strong> Content → Pages → Add page. For Contact choose template <code>page.contact</code>; for FAQ choose <code>page.faq</code>. Add them to your menus.</div></div>
+  <div class="step"><b>4</b><div><strong>Filters.</strong> Install the free <a href="https://apps.shopify.com/search-and-discovery">Shopify Search &amp; Discovery</a> app and switch on the filters you want (size, colour, price…). Hemline reads them automatically.</div></div>
+  <div class="step"><b>5</b><div><strong>Colours &amp; fonts.</strong> Customize → Theme settings → Colours. Pick a scheme per section with the "Colour scheme" setting at the top of every section.</div></div>
+  <div class="step"><b>6</b><div><strong>Homepage.</strong> Customize → Home page. Click each section to pick collections, products and images. Sections auto-fill from your catalogue until you do.</div></div>
+  <div class="step"><b>7</b><div><strong>Policies.</strong> Settings → Policies. Hemline links them in the footer and renders them with the policy template.</div></div>
+</section>
+
+<section id="settings"><h2>2. Theme settings</h2><p>Customize → <em>Theme settings</em> (gear icon). Everything here is global.</p>
+<table><tr><th>Group</th><th>Setting</th><th>What it does</th></tr>
+<tr><td>Colours</td><td>Colour schemes</td><td>Five presets (Ivory, Noir, Sage, Blush, Ocean). Edit any token or add your own. Each section picks a scheme.</td></tr>
+<tr><td>Typography</td><td>Heading / body font, scales</td><td>Any Shopify font. Defaults: Fraunces + Inter.</td></tr>
+<tr><td>Layout &amp; shape</td><td>Page width, corner radius, button shape, section spacing</td><td>Radius 0 = sharp editorial, 24 = soft. Buttons: pill / match radius / sharp.</td></tr>
+<tr><td>Product cards</td><td>Hover (lift / zoom / swap image), quick add, swatches, wishlist, badges, ratio</td><td>Badges: <code>new</code> tag → New; compare-at price → Sale; low inventory → Low stock.</td></tr>
+<tr><td>Cart</td><td>Drawer / page, free-shipping bar + threshold, note, upsell product, payment badges</td><td>Threshold in whole currency units, e.g. 4999.</td></tr>
+<tr><td>Search</td><td>Popular searches</td><td>Chips shown in the search drawer before typing.</td></tr>
+<tr><td>Social</td><td>Instagram, WhatsApp, Pinterest, YouTube</td><td>WhatsApp number with country code, digits only.</td></tr>
+</table></section>
+
+<section id="colours"><h2>3. Colour schemes</h2><p>Each scheme is 11 tokens. Sections choose a scheme; nothing is hard-coded, so a Noir hero over an Ivory page just works.</p>
+<table><tr><th>Scheme</th><th>Mood</th><th>Accent</th></tr>
+<tr><td><span class="swatch" style="background:#F6F2EC"></span>Ivory</td><td>Warm editorial — default</td><td><span class="swatch" style="background:#B8552F"></span>Rust</td></tr>
+<tr><td><span class="swatch" style="background:#0F0F10"></span>Noir</td><td>Luxury, night</td><td><span class="swatch" style="background:#D4A857"></span>Gold</td></tr>
+<tr><td><span class="swatch" style="background:#EEF1EA"></span>Sage</td><td>Natural, slow fashion</td><td><span class="swatch" style="background:#3F6B4F"></span>Forest</td></tr>
+<tr><td><span class="swatch" style="background:#F8ECE8"></span>Blush</td><td>Feminine, beauty</td><td><span class="swatch" style="background:#B23A48"></span>Raspberry</td></tr>
+<tr><td><span class="swatch" style="background:#EAF0F4"></span>Ocean</td><td>Crisp, sport, menswear</td><td><span class="swatch" style="background:#1C5D8A"></span>Cobalt</td></tr></table>
+<p><strong>Tokens:</strong> background, surface (cards), tint, tint 2 (deep), lines, text, muted text, accent, text on accent, accent 2 (blocks), text on accent 2. Keep body text ≥ 4.5:1 contrast against background.</p></section>
+
+<section id="menus"><h2>4. Menus &amp; mega menu</h2>
+<p>The header reads <code>Main menu</code>. Any top-level item that has children opens a <strong>mega menu</strong>: each child becomes a column heading, grandchildren become the links. Three levels are supported.</p>
+<pre><code>Main menu
+├─ New in
+├─ Women            ← has children → mega menu
+│  ├─ Outerwear     ← column
+│  │  ├─ Coats
+│  │  └─ Jackets
+│  ├─ Knitwear
+│  └─ Tailoring
+├─ Men
+└─ Editorial</code></pre>
+<p><strong>Promo images in the mega menu:</strong> Customize → Header → Add block → <em>Mega menu promo</em>. Set "Attach to menu item" to the exact title (e.g. <code>Women</code>) and add up to two images with links.</p>
+<p><strong>Highlight one item</strong> (e.g. "New in") in the accent colour: Header → "Highlight this menu item".</p>
+<p>On mobile the same menu becomes a multi-level accordion in the side drawer.</p></section>
+
+<section id="sections"><h2>5. Homepage sections</h2>
+<table><tr><th>Section</th><th>Use it for</th><th>Key settings</th></tr>
+<tr><td>Hero — split</td><td>Main campaign image + side promo card</td><td>Image, heading (supports <em>italics</em>), 2 buttons, side card text + second image</td></tr>
+<tr><td>Marquee strip</td><td>USP ticker</td><td>Up to ~8 text items</td></tr>
+<tr><td>Category tiles</td><td>Bento grid of collections</td><td>Per tile: collection, width (of 12), height, fallback colour</td></tr>
+<tr><td>Featured collection</td><td>Product row</td><td>Collection, count, columns. Auto-fills from "All products" if empty</td></tr>
+<tr><td>Story + stats</td><td>Brand story with 3 big numbers</td><td>Text, image, stat blocks</td></tr>
+<tr><td>Shop the look</td><td>One image + 3 products, add all</td><td>Products, optional hotspot X/Y per product</td></tr>
+<tr><td>Lookbook hotspots</td><td>Clickable dots on an editorial image</td><td>Image, hotspot blocks (product + X/Y)</td></tr>
+<tr><td>Bundle</td><td>2–4 products, bundle price, one-click add</td><td>Displayed % off — create a matching automatic discount in Admin</td></tr>
+<tr><td>Countdown</td><td>Drop / sale timer</td><td>End date + time (visitor's local time), hide on end</td></tr>
+<tr><td>Before / after</td><td>Drag-to-compare images</td><td>Two images, labels, ratio</td></tr>
+<tr><td>Reviews (manual)</td><td>Quote cards</td><td>Up to 6 review blocks. For app reviews use an app block instead</td></tr>
+<tr><td>Instagram grid</td><td>6–12 images linking out</td><td>Image + link per block</td></tr>
+<tr><td>Newsletter</td><td>Email capture</td><td>Heading, text; subscribers get the <code>newsletter</code> tag</td></tr>
+<tr><td>Product recommendations</td><td>"You may also like" (Shopify engine)</td><td>Count. Tune in Search &amp; Discovery</td></tr>
+<tr><td>Custom Liquid</td><td>App snippets, embeds</td><td>Full width toggle, padding</td></tr>
+<tr><td>Apps</td><td>App blocks container</td><td>—</td></tr>
+</table>
+<p>Every section has <strong>Colour scheme</strong> at the top. Reorder by dragging in the sidebar.</p></section>
+
+<section id="product"><h2>6. Product page</h2>
+<p>The product page is made of blocks you can reorder or remove: Title &amp; price · Short description · Variant picker · Buy buttons · Trust icons · Pincode check · Collapsible rows · Complementary products · Custom Liquid · Description · Share.</p>
+<h3>Variants</h3><p>Options named <code>Colour</code> or <code>Color</code> render as swatches; <code>Size</code> gets a size-guide link (pick the page in the Variant picker block). Unavailable combinations are struck through. Variant images switch the gallery.</p>
+<h3>Subscriptions</h3><p>Install any selling-plan app (e.g. Shopify Subscriptions). Plans appear automatically above Add to bag with the discount shown.</p>
+<h3>Pickup</h3><p>Enable local pickup under Settings → Shipping. Availability shows per variant below the buttons.</p>
+<h3>Shop Pay Installments</h3><p>Enable in Settings → Payments. The banner appears under the buttons.</p>
+<h3>Gift cards</h3><p>Gift card products show a "Send as a gift" form (recipient email, message, send date).</p>
+<h3>Low stock</h3><p>"Only N left" appears when inventory ≤ the threshold in Theme settings → Product cards.</p>
+<h3>Complementary products</h3><p>Set them in Search &amp; Discovery → Product recommendations → Complementary. Shown as a compact list in the buy box.</p></section>
+
+<section id="collection"><h2>7. Collections &amp; filters</h2>
+<p>Filters come from Shopify Search &amp; Discovery (free). Sorting, 2–5 column grid, a promo tile inside the grid, and an SEO text block (set per collection via metafield <code>custom.seo_text</code> or globally in the section) are built in.</p>
+<p><strong>Sub-collection chips:</strong> create a menu whose handle matches the collection handle (e.g. menu handle <code>outerwear</code> for /collections/outerwear) and it appears as chips above the grid. Or pick a menu in the section settings.</p></section>
+
+<section id="cart"><h2>8. Cart</h2><p>Drawer (default) or page — Theme settings → Cart. Both support quantity changes, removal, discounts, order notes, a free-shipping progress bar, an upsell product and payment badges. Express checkout buttons show on the cart page.</p></section>
+
+<section id="promo"><h2>9. Promo tools</h2>
+<ul><li><strong>Countdown</strong> — ends at the date/time you set, in each visitor's local time. Optionally hides itself when done.</li>
+<li><strong>Bundle</strong> — the % shown is display only; create an <em>automatic discount</em> (Discounts → Create → Amount off products → applies to those products) so checkout matches.</li>
+<li><strong>Lookbook hotspots</strong> — set X/Y per hotspot; preview updates live in the editor. "Add all" adds every tagged product (first available variant).</li>
+<li><strong>Before / after</strong> — use two images with the same framing.</li></ul></section>
+
+<section id="apps"><h2>10. Recommended apps</h2>
+<div class="grid3"><div class="card"><strong>Search &amp; Discovery</strong><p>Free, by Shopify. Filters, recommendations, complementary products.</p></div><div class="card"><strong>Shopify Subscriptions</strong><p>Free. Selling plans render natively in Hemline.</p></div><div class="card"><strong>Judge.me / Loox</strong><p>Reviews. Add their app block to the product page; the manual Reviews section is for quotes.</p></div><div class="card"><strong>Wishlist Plus / Swym</strong><p>Wishlist. Paste the wishlist page URL in Header settings.</p></div><div class="card"><strong>Shopify Inbox</strong><p>Chat. Or use the WhatsApp number in Social settings.</p></div><div class="card"><strong>Translate &amp; Adapt</strong><p>Free. Language selector appears automatically when you add a language.</p></div></div></section>
+
+<section id="faq"><h2>FAQ</h2>
+<details><summary>Products aren't showing on the homepage</summary><div><p>Click the section and pick a collection. If no collection is chosen Hemline uses "All products" — make sure at least one product is <em>Active</em> and available on the Online Store sales channel.</p></div></details>
+<details><summary>The filter button shows nothing</summary><div><p>Install Shopify Search &amp; Discovery and turn on at least one filter. Filters appear within a minute.</p></div></details>
+<details><summary>How do I change the logo?</summary><div><p>Customize → Header → Logo. Leave empty to use your store name as a wordmark.</p></div></details>
+<details><summary>Can I use my own fonts?</summary><div><p>Choose any font from Shopify's library in Theme settings → Typography. Custom font files aren't supported by Theme Store themes; a developer can add them via Custom Liquid.</p></div></details>
+<details><summary>Why is the mega menu not opening?</summary><div><p>Only menu items that have child items open a mega menu. Add children under the item in Content → Menus.</p></div></details>
+<details><summary>How do I show reviews from my app?</summary><div><p>Product page → Add block → pick your app's block. Use the manual "Reviews" section only for hand-written quotes.</p></div></details>
+<details><summary>Checkout looks different from the theme</summary><div><p>Checkout is hosted by Shopify. Match colours and fonts under Settings → Checkout.</p></div></details>
+<details><summary>How do I get updates?</summary><div><p>Theme Store purchases get updates in Online Store → Themes (an "Update" button appears). Your settings and content are kept.</p></div></details>
+</section>
+
+<section id="support"><h2>Support</h2>
+<p>We answer within <strong>2 business days</strong> (usually same day, Mon–Sat 10am–7pm IST). Include your store URL and, if relevant, the page where you see the issue.</p>
+<div class="card" style="max-width:620px">
+<form action="FORM_ENDPOINT" method="POST" id="SupportForm">
+  <div class="field"><label for="s-name">Name</label><input id="s-name" name="name" required></div>
+  <div class="field"><label for="s-email">Email</label><input id="s-email" name="email" type="email" required></div>
+  <div class="field"><label for="s-store">Store URL</label><input id="s-store" name="store" placeholder="yourstore.myshopify.com" required></div>
+  <div class="field"><label for="s-topic">Topic</label><select id="s-topic" name="topic"><option>Setup help</option><option>Bug report</option><option>Feature request</option><option>Pre-sale question</option><option>Other</option></select></div>
+  <div class="field"><label for="s-msg">Message</label><textarea id="s-msg" name="message" required></textarea></div>
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+  <button class="btn" type="submit">Send</button>
+  <p id="SupportNote" style="font-size:13px;margin-top:12px"></p>
+</form>
+<p style="font-size:13px;margin-top:14px">Or open a ticket directly: <a href="https://github.com/amitrkananidev/shopify-hemline-docs/issues/new">github.com/amitrkananidev/shopify-hemline-docs/issues</a>.</p>
+</div>
+<script>
+  // Default: open a prefilled GitHub issue (works with no backend).
+  // To receive submissions by email instead, set FORM_ENDPOINT on the form to a Formspree/Basin URL.
+  document.getElementById('SupportForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target, note = document.getElementById('SupportNote');
+    if (f._gotcha.value) return;
+    if (!f.action.includes('FORM_ENDPOINT')) {
+      note.textContent = 'Sending…';
+      try { const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+        note.textContent = r.ok ? "Thanks — we'll reply within 2 business days." : 'Something went wrong — try the GitHub option below.'; if (r.ok) f.reset(); return; } catch (_) {}
+    }
+    const title = '[' + f.topic.value + '] ' + f.store.value;
+    const body = '**Name:** ' + f.name.value + '\n**Store:** ' + f.store.value + '\n**Topic:** ' + f.topic.value + '\n\n' + f.message.value + '\n\n_(Email withheld from public issue; we will reply here.)_';
+    window.open('https://github.com/amitrkananidev/shopify-hemline-docs/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body), '_blank', 'noopener');
+    note.textContent = 'Opened a prefilled support ticket on GitHub — press "Submit new issue" there. We reply within 2 business days.';
+  });
+</script>
+</section>
+
+<section id="changelog"><h2>Changelog</h2>
+<p><strong>0.2.0</strong> — Mega menu, predictive search, product recommendations, unit pricing, subscriptions, Shop Pay Installments, pickup availability, gift card recipient form, Custom Liquid, country/language selectors, Follow on Shop, Countdown, Bundle, Before/after, Lookbook hotspots.</p>
+<p><strong>0.1.0</strong> — Initial release.</p></section>
+</main>
+</div>
+
+<footer class="wrap"><span>© 2026 Hemline theme · <a href="https://github.com/amitrkananidev/shopify-hemline-docs">Docs on GitHub</a></span><span>Built for Shopify Online Store 2.0</span></footer>
+</body>
+</html>
