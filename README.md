@@ -1,6 +1,6 @@
-# Selvedge theme — documentation
+# Tailorly theme — documentation
 
-Setup guide and support for the Selvedge Shopify theme.
+Setup guide and support for the Tailorly Shopify theme.
 
 Live site: https://selvedge.trinityinfo.in/
 
