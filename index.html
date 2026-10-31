@@ -154,6 +154,7 @@
 
 <section id="support"><h2>Support</h2>
 <p>We answer within <strong>2 business days</strong> (usually same day, Mon–Sat 10am–7pm IST). Include your store URL and, if relevant, the page where you see the issue.</p>
+<p>Email: <a href="mailto:info@trinityinfo.in?subject=Hemline%20theme%20support"><strong>info@trinityinfo.in</strong></a></p>
 <div class="card" style="max-width:620px">
 <form action="FORM_ENDPOINT" method="POST" id="SupportForm">
   <div class="field"><label for="s-name">Name</label><input id="s-name" name="name" required></div>
@@ -165,10 +166,10 @@
   <button class="btn" type="submit">Send</button>
   <p id="SupportNote" style="font-size:13px;margin-top:12px"></p>
 </form>
-<p style="font-size:13px;margin-top:14px">Or open a ticket directly: <a href="https://github.com/amitrkananidev/shopify-hemline-docs/issues/new">github.com/amitrkananidev/shopify-hemline-docs/issues</a>.</p>
+<p style="font-size:13px;margin-top:14px">Or email <a href="mailto:info@trinityinfo.in">info@trinityinfo.in</a> directly, or open a public ticket on <a href="https://github.com/amitrkananidev/shopify-hemline-docs/issues/new">GitHub</a>.</p>
 </div>
 <script>
-  // Default: open a prefilled GitHub issue (works with no backend).
+  // Default: open the visitor's mail app with a prefilled email to support (works with no backend).
   // To receive submissions by email instead, set FORM_ENDPOINT on the form to a Formspree/Basin URL.
   document.getElementById('SupportForm').addEventListener('submit', async e => {
     e.preventDefault();
@@ -177,12 +178,12 @@
     if (!f.action.includes('FORM_ENDPOINT')) {
       note.textContent = 'Sending…';
       try { const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
-        note.textContent = r.ok ? "Thanks — we'll reply within 2 business days." : 'Something went wrong — try the GitHub option below.'; if (r.ok) f.reset(); return; } catch (_) {}
+        note.textContent = r.ok ? "Thanks — we'll reply within 2 business days." : 'Something went wrong — please email info@trinityinfo.in.'; if (r.ok) f.reset(); return; } catch (_) {}
     }
-    const title = '[' + f.topic.value + '] ' + f.store.value;
-    const body = '**Name:** ' + f.name.value + '\n**Store:** ' + f.store.value + '\n**Topic:** ' + f.topic.value + '\n\n' + f.message.value + '\n\n_(Email withheld from public issue; we will reply here.)_';
-    window.open('https://github.com/amitrkananidev/shopify-hemline-docs/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body), '_blank', 'noopener');
-    note.textContent = 'Opened a prefilled support ticket on GitHub — press "Submit new issue" there. We reply within 2 business days.';
+    const subject = 'Hemline support: [' + f.topic.value + '] ' + f.store.value;
+    const body = 'Name: ' + f.name.value + '\nReply-to: ' + f.email.value + '\nStore: ' + f.store.value + '\nTopic: ' + f.topic.value + '\n\n' + f.message.value;
+    window.location.href = 'mailto:info@trinityinfo.in?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    note.innerHTML = 'Your email app should open with the message ready — press Send. Nothing opened? Email <a href="mailto:info@trinityinfo.in">info@trinityinfo.in</a> directly.';
   });
 </script>
 </section>
